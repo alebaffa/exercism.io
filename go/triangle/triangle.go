@@ -11,21 +11,6 @@ const (
 	NaT
 )
 
-func (k Kind) String() string {
-	switch k {
-	case Equ:
-		return "Equ"
-	case Iso:
-		return "Iso"
-	case Sca:
-		return "Sca"
-	case NaT:
-		return "NaT"
-	default:
-		panic("should not occur")
-	}
-}
-
 func KindFromSides(a, b, c float64) Kind {
 	// I create an array with the sides so that I can easily loop on them without using multiple if
 	triangle := []float64{a, b, c}
