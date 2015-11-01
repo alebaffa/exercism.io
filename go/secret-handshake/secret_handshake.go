@@ -11,10 +11,11 @@ func Handshake(code int) []string {
 	}
 	/*Here I can directly manipulates the bits in the input number.
 		Ex.: 19 = 10011. I can shift the number 1 to the number of positions I want to check in the input number
-		(1<<x, x being the num of positions. It will give 2^x value corresponding to the position-x, in case there is 1 in that position).
+		(1<<x, x being the num of positions. It will give 2^x value corresponding to the position-x,
+		in case there is 1 in that position).
 	  Then, I can AND it with the input number. If it is greater than zero, it means that the bit is set in that position.
 	*/
-	for index, _ := range events {
+	for index := range events {
 		i := uint(index)
 		if code&(1<<i) > 0 {
 			result = append(result, events[index])
