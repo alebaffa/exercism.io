@@ -1,17 +1,20 @@
 package foodchain
 
 import (
-	"bytes"
 	"fmt"
+	"strings"
 )
 
+// TestVersion is the version of this code.
 const TestVersion = 1
 
+//Phrase is the structure of the verses composing the poem.
 type Phrase struct {
 	animal string
-	second string
+	how    string
 }
 
+//Phrases is the array of Phrase structures
 var Phrases = []Phrase{
 	{"fly", "I don't know why she swallowed the fly. Perhaps she'll die."},
 	{"spider", "It wriggled and jiggled and tickled inside her.\n"},
@@ -23,43 +26,49 @@ var Phrases = []Phrase{
 	{"horse", "She's dead, of course!"},
 }
 
-func Verse(num int) string {
-	num -= 1
-	var buffer bytes.Buffer
+// Verse returns the verse of the poem at the given position.
+func Verse(position int) string {
+	position--
+	poem := fmt.Sprint("I know an old lady who swallowed a ", Phrases[position].animal, ".\n")
+	poem += Phrases[position].how
 
-	buffer.WriteString(fmt.Sprint("I know an old lady who swallowed a ", Phrases[num].animal, ".\n"))
-	buffer.WriteString(fmt.Sprint(Phrases[num].second))
-
-	if Phrases[num].animal == "fly" || Phrases[num].animal == "horse" {
-		return buffer.String()
+	// if cases of 'fly' and 'horse' just returns now.
+	if position == 0 || position == 7 {
+		return poem
 	}
 
-	for i := num; i >= 1; i-- {
-		buffer.WriteString(fmt.Sprint("She swallowed the ", Phrases[i].animal, " to catch the ", Phrases[i-1].animal))
-		if Phrases[i-1].animal == "spider" {
-			buffer.WriteString(fmt.Sprint(" that wriggled and jiggled and tickled inside her"))
+	for position > 0 {
+		poem += fmt.Sprint("She swallowed the ", Phrases[position].animal, " to catch the ", Phrases[position-1].animal)
+		if position == 2 {
+			poem += " that wriggled and jiggled and tickled inside her.\n"
+		} else {
+			poem += ".\n"
 		}
-		buffer.WriteString(fmt.Sprint(".\n"))
+		position--
 	}
 
-	buffer.WriteString(fmt.Sprint(Phrases[0].second))
-	return buffer.String()
+	poem += fmt.Sprint(Phrases[0].how)
+	return poem
 }
 
-func Verses(i, j int) string {
-	var buffer bytes.Buffer
-	buffer.WriteString(fmt.Sprint(Verse(i), "\n", "\n", Verse(j)))
-	return buffer.String()
+//Verses returns the verses of the poem at the given positions.
+func Verses(n ...int) string {
+	var verses []string
+	for _, i := range n {
+		verses = append(verses, Verse(i))
+	}
+	return strings.Join(verses, "\n\n")
 
 }
 
+//Song returns the entire poem.
 func Song() string {
-	var buffer bytes.Buffer
+	verses := ""
 	for i := 1; i < 9; i++ {
 		if i != 1 {
-			buffer.WriteString("\n\n")
+			verses += "\n\n"
 		}
-		buffer.WriteString(fmt.Sprint(Verse(i)))
+		verses += Verse(i)
 	}
-	return buffer.String()
+	return verses
 }
