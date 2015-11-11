@@ -52,9 +52,9 @@ func Verse(position int) string {
 }
 
 //Verses returns the verses of the poem at the given positions.
-func Verses(n ...int) string {
+func Verses(start, end int) string {
 	var verses []string
-	for _, i := range n {
+	for i := start; i <= end; i++ {
 		verses = append(verses, Verse(i))
 	}
 	return strings.Join(verses, "\n\n")
@@ -63,12 +63,5 @@ func Verses(n ...int) string {
 
 //Song returns the entire poem.
 func Song() string {
-	verses := ""
-	for i := 1; i < 9; i++ {
-		if i != 1 {
-			verses += "\n\n"
-		}
-		verses += Verse(i)
-	}
-	return verses
+	return Verses(1, len(Phrases))
 }
