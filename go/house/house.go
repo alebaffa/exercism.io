@@ -5,7 +5,11 @@ func Embed(l, p string) string {
 }
 
 func Verse(s string, ri []string, p string) string {
-	return ""
+	verse := ""
+	for _, phrase := range ri {
+		verse += " " + phrase
+	}
+	return s + verse + " " + p
 }
 
 func Song() string {
