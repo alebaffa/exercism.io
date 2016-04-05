@@ -9,8 +9,12 @@ func CanQueenAttack(whiteQueen, blackQueen string) (bool, error) {
 		return false, errors.New("coordinates are not valid")
 	}
 
-	if !isInBoard(whiteQueen) || !isInBoard(blackQueen) || whiteQueen == blackQueen {
+	if !isInBoard(whiteQueen) || !isInBoard(blackQueen) {
 		return false, errors.New("off the board")
+	}
+
+	if whiteQueen == blackQueen {
+		return false, errors.New("queens in the same position")
 	}
 
 	rowDist, colDist := distances(whiteQueen, blackQueen)
