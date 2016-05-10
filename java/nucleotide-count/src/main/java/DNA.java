@@ -43,7 +43,6 @@ public class DNA {
 				return true;
 		}
 		return false;
-
 	}
 
 	public Map<Character, Integer> nucleotideCounts() {

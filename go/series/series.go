@@ -8,6 +8,7 @@ func All(length int, number string) []string {
 			substrings = append(substrings, number[index:index+length])
 		}
 	}
+
 	return substrings
 }
 
