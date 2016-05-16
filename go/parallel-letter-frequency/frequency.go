@@ -16,7 +16,9 @@ func ConcurrentFrequency(words []string) FreqMap {
 	for _, value := range words {
 		// anonymous function calls Frequency() 3 times in parallel
 		// and puts the 3 results in the channel of size 3
-		go func(v string) { channel <- Frequency(v) }(value)
+		go func(v string) {
+			channel <- Frequency(v)
+		}(value)
 	}
 
 	return formatResult(words, channel)
