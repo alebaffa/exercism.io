@@ -16,6 +16,7 @@ type Phrase struct {
 
 //Phrases is the array of Phrase structures
 var Phrases = []Phrase{
+	{"", ""},
 	{"fly", "I don't know why she swallowed the fly. Perhaps she'll die."},
 	{"spider", "It wriggled and jiggled and tickled inside her.\n"},
 	{"bird", "How absurd to swallow a bird!\n"},
@@ -28,18 +29,17 @@ var Phrases = []Phrase{
 
 // Verse returns the verse of the poem at the given position.
 func Verse(position int) string {
-	position--
 	poem := fmt.Sprint("I know an old lady who swallowed a ", Phrases[position].animal, ".\n")
 	poem += Phrases[position].how
 
 	// if cases of 'fly' and 'horse' just returns now.
-	if position == 0 || position == 7 {
+	if position == 1 || position == 8 {
 		return poem
 	}
 
-	for position > 0 {
+	for position > 1 {
 		poem += fmt.Sprint("She swallowed the ", Phrases[position].animal, " to catch the ", Phrases[position-1].animal)
-		if position == 2 {
+		if position == 3 {
 			poem += " that wriggled and jiggled and tickled inside her.\n"
 		} else {
 			poem += ".\n"
@@ -47,7 +47,7 @@ func Verse(position int) string {
 		position--
 	}
 
-	poem += fmt.Sprint(Phrases[0].how)
+	poem += fmt.Sprint(Phrases[1].how)
 	return poem
 }
 
