@@ -1,29 +1,19 @@
 package pascal
 
-func nextRow(prevRow []int) []int {
-	current := make([]int, 0, len(prevRow)+1)
-
-	leftmost := 1
-	current = append(current, leftmost)
-
-	for i := 1; i < len(prevRow); i++ {
-		current = append(current, prevRow[i-1]+prevRow[i])
+func pascal(row, col int) int {
+	if col == 0 || row == col {
+		return 1
 	}
-
-	rightmost := 1
-	current = append(current, rightmost)
-	return current
+	return pascal(row-1, col-1) + pascal(row-1, col)
 }
 
 // Triangle takes a number indicating the pascal's triangle depth, and returns the pascal's triangle according to that depth
 func Triangle(depth int) [][]int {
-	triangle := [][]int{}
-	if depth <= 0 {
-		return triangle
-	}
-	triangle = append(triangle, []int{1})
-	for i := 1; i < depth; i++ {
-		triangle = append(triangle, nextRow(triangle[i-1]))
+	triangle := make([][]int, depth)
+	for row := 0; row < depth; row++ {
+		for col := 0; col <= row; col++ {
+			triangle[row] = append(triangle[row], pascal(row, col))
+		}
 	}
 	return triangle
 }
