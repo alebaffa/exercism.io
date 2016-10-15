@@ -49,31 +49,26 @@ func Bracket(input string) (bool, error) {
 			stack.Push(&Node{string(char)})
 		case parenthesis1Close:
 			node := stack.Pop()
-			if node == nil {
-				return false, nil
-			}
-			if node.Value != parenthesis1Open {
-				return false, nil
-			}
+			return checkNextSymbolIsCorrect(node, parenthesis1Open)
 		case parenthesis2Close:
 			node := stack.Pop()
-			if node == nil {
-				return false, nil
-			}
-			if node.Value != parenthesis2Open {
-				return false, nil
-			}
+			return checkNextSymbolIsCorrect(node, parenthesis2Open)
 		case parenthesis3Close:
 			node := stack.Pop()
-			if node == nil {
-				return false, nil
-			}
-			if node.Value != parenthesis3Open {
-				return false, nil
-			}
+			return checkNextSymbolIsCorrect(node, parenthesis3Open)
 		}
 	}
 	if stack.count != 0 {
+		return false, nil
+	}
+	return true, nil
+}
+
+func checkNextSymbolIsCorrect(node *Node, parenthesisOpen string) (bool, error) {
+	if node == nil {
+		return false, nil
+	}
+	if node.Value != parenthesisOpen {
 		return false, nil
 	}
 	return true, nil
