@@ -6,30 +6,28 @@ public class Anagram {
     private String word;
 
     public Anagram(String word) {
-        this.word = word.toLowerCase();
+        this.word = word;
     }
 
     public List<String> match(List<String> strings) {
         List<String> result = new ArrayList<>();
 
         for (String candidate : strings) {
-            String originalCandidate = candidate;
-            candidate = candidate.toLowerCase();
-
             if (haveDifferentSize(word, candidate))
                 continue;
 
             if (isAnagram(word, candidate)) {
-                result.add(originalCandidate);
+                result.add(candidate);
             }
         }
         return result;
     }
 
     private boolean isAnagram(String word, String candidate) {
-        String convertedWord = convert(word);
-        String convertedCandidate = convert(candidate);
-        return !word.equals(candidate) && convertedWord.equals(convertedCandidate);
+        word = word.toLowerCase();
+        candidate = candidate.toLowerCase();
+
+        return !word.equals(candidate) && convert(word).equals(convert(candidate));
     }
 
     private boolean haveDifferentSize(String word, String candidate) {
