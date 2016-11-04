@@ -1,8 +1,8 @@
 package binary
 
-import "strconv"
+import "errors"
+
 import "regexp"
-import "fmt"
 
 const testVersion = 2
 
@@ -13,21 +13,18 @@ const testVersion = 2
 func ParseBinary(input string) (int, error) {
 
 	if !isValid(input) {
-		return 0, fmt.Errorf("found not valid characters")
+		return 0, errors.New("found not valid characters")
 	}
 
 	result := 0
-	i := len(input) - 1
-	for _, n := range input {
-		num, _ := strconv.Atoi(string(n))
-		result += num << uint(i)
-		i--
+	for i, n := range input {
+		if n == '1' {
+			result += 1 << uint(len(input)-i-1)
+		}
 	}
 	return result, nil
 }
 
 func isValid(input string) bool {
-	regex := regexp.MustCompile("[a-z]+|[2]+")
-	word := regex.FindAllString(input, -1)
-	return len(word) == 0
+	return regexp.MustCompile("\\A[01]*\\z").MatchString(input)
 }
