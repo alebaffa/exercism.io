@@ -12,7 +12,8 @@ public class EtlTest {
 
     @Test
     public void testTransformOneValue() {
-        Map<Integer, List<String>> old = ImmutableMap.of(1, Arrays.asList("A"));
+        ImmutableMap<Integer, List<String>> a = ImmutableMap.of(1, Arrays.asList("A"));
+        Map<Integer, List<String>> old = a;
         Map<String, Integer> expected = ImmutableMap.of("a", 1);
 
         assertThat(etl.transform(old)).isEqualTo(expected);
@@ -71,4 +72,8 @@ public class EtlTest {
 
         assertThat(etl.transform(old)).isEqualTo(expected);
     }
+
+
+
+
 }
