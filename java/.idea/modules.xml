@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/exercism.iml" filepath="$PROJECT_DIR$/.idea/modules/exercism.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/exercism_main.iml" filepath="$PROJECT_DIR$/.idea/modules/exercism_main.iml" group="exercism" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/exercism_test.iml" filepath="$PROJECT_DIR$/.idea/modules/exercism_test.iml" group="exercism" />
+      <module fileurl="file://$PROJECT_DIR$/anagram/src/main/main.iml" filepath="$PROJECT_DIR$/anagram/src/main/main.iml" group="exercism" />
+      <module fileurl="file://$PROJECT_DIR$/anagram/src/test/test.iml" filepath="$PROJECT_DIR$/anagram/src/test/test.iml" group="exercism" />
     </modules>
   </component>
 </project>

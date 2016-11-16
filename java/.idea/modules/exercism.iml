@@ -3,6 +3,14 @@
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$/../..">
+      <sourceFolder url="file://$MODULE_DIR$/../../etl" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../anagram" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../nucleotide-count" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../word-count" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../anagram/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../etl/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../nucleotide-count/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../word-count/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/../../.gradle" />
       <excludeFolder url="file://$MODULE_DIR$/../../build" />
     </content>

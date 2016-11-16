@@ -1,3 +1,4 @@
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -7,15 +8,20 @@ import static org.junit.Assert.assertEquals;
 
 public class WordCountTest {
 
-    private final WordCount wordCount = new WordCount();
+    private WordCount wordCount;
+    private Map<String, Integer> actualWordCount;
+    private Map<String, Integer> expectedWordCount;
+
+    @Before
+    public void setUp(){
+        wordCount= new WordCount();
+        expectedWordCount = new HashMap<>();
+    }
 
 
     @Test
     public void countOneWord() {
-        Map<String, Integer> actualWordCount = new HashMap<String, Integer>();
-        final Map<String, Integer> expectedWordCount = new HashMap<String, Integer>();
         expectedWordCount.put("word", 1);
-
         actualWordCount = wordCount.phrase("word");
         assertEquals(
                 expectedWordCount, actualWordCount
@@ -25,8 +31,6 @@ public class WordCountTest {
 
     @Test
     public void countOneOfEach() {
-        Map<String, Integer> actualWordCount = new HashMap<String, Integer>();
-        final Map<String, Integer> expectedWordCount = new HashMap<String, Integer>();
         expectedWordCount.put("one", 1);
         expectedWordCount.put("of", 1);
         expectedWordCount.put("each", 1);
@@ -39,8 +43,6 @@ public class WordCountTest {
 
     @Test
     public void countMultipleOccurences() {
-        Map<String, Integer> actualWordCount = new HashMap<String, Integer>();
-        final Map<String, Integer> expectedWordCount = new HashMap<String, Integer>();
         expectedWordCount.put("one", 1);
         expectedWordCount.put("fish", 4);
         expectedWordCount.put("two", 1);
@@ -56,8 +58,6 @@ public class WordCountTest {
 
     @Test
     public void ignorePunctuation() {
-        Map<String, Integer> actualWordCount = new HashMap<String, Integer>();
-        final Map<String, Integer> expectedWordCount = new HashMap<String, Integer>();
         expectedWordCount.put("car", 1);
         expectedWordCount.put("carpet", 1);
         expectedWordCount.put("as", 1);
@@ -74,8 +74,6 @@ public class WordCountTest {
 
     @Test
     public void includeNumbers() {
-        Map<String, Integer> actualWordCount = new HashMap<String, Integer>();
-        final Map<String, Integer> expectedWordCount = new HashMap<String, Integer>();
         expectedWordCount.put("testing", 2);
         expectedWordCount.put("1", 1);
         expectedWordCount.put("2", 1);
@@ -89,14 +87,10 @@ public class WordCountTest {
 
     @Test
     public void normalizeCase() {
-        Map<String, Integer> actualWordCount = new HashMap<String, Integer>();
-        final Map<String, Integer> expectedWordCount = new HashMap<String, Integer>();
         expectedWordCount.put("go", 3);
-
         actualWordCount = wordCount.phrase("go Go GO");
         assertEquals(
                 expectedWordCount, actualWordCount
         );
     }
-
 }
