@@ -9,8 +9,11 @@ public class Pangrams {
 
     public static boolean isPangram(String s) {
 
-        return Arrays.stream(s.replaceAll("[^a-zA-Z]", "").toLowerCase().split(""))
-                .collect(Collectors.toSet()).size() == alphabetLenght;
+        return Arrays.stream(s.replaceAll("[^a-zA-Z]", "")
+                .toLowerCase()
+                .split(""))
+                .collect(Collectors.toSet())
+                .size() == alphabetLenght;
 
 
     }

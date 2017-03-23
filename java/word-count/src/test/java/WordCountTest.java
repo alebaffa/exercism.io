@@ -23,9 +23,7 @@ public class WordCountTest {
     public void countOneWord() {
         expectedWordCount.put("word", 1);
         actualWordCount = wordCount.phrase("word");
-        assertEquals(
-                expectedWordCount, actualWordCount
-        );
+        assertEquals(actualWordCount, expectedWordCount);
     }
 
 
@@ -36,9 +34,7 @@ public class WordCountTest {
         expectedWordCount.put("each", 1);
 
         actualWordCount = wordCount.phrase("one of each");
-        assertEquals(
-                expectedWordCount, actualWordCount
-        );
+        assertEquals(actualWordCount, expectedWordCount);
     }
 
     @Test
@@ -50,9 +46,7 @@ public class WordCountTest {
         expectedWordCount.put("blue", 1);
 
         actualWordCount = wordCount.phrase("one fish two fish red fish blue fish");
-        assertEquals(
-                expectedWordCount, actualWordCount
-        );
+        assertEquals(actualWordCount, expectedWordCount);
     }
 
 
@@ -65,9 +59,7 @@ public class WordCountTest {
         expectedWordCount.put("javascript", 1);
 
         actualWordCount = wordCount.phrase("car : carpet as java : javascript!!&@$%^&");
-        assertEquals(
-                expectedWordCount, actualWordCount
-        );
+        assertEquals(actualWordCount, expectedWordCount);
 
     }
 
@@ -79,9 +71,7 @@ public class WordCountTest {
         expectedWordCount.put("2", 1);
 
         actualWordCount = wordCount.phrase("testing, 1, 2 testing");
-        assertEquals(
-                expectedWordCount, actualWordCount
-        );
+        assertEquals(actualWordCount, expectedWordCount);
     }
 
 
@@ -89,8 +79,6 @@ public class WordCountTest {
     public void normalizeCase() {
         expectedWordCount.put("go", 3);
         actualWordCount = wordCount.phrase("go Go GO");
-        assertEquals(
-                expectedWordCount, actualWordCount
-        );
+        assertEquals(actualWordCount, expectedWordCount);
     }
 }
