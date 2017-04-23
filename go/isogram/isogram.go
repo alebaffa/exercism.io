@@ -1,26 +1,22 @@
 package isogram
 
 import (
-	"regexp"
-	"strings"
+	"unicode"
 )
 
 const testVersion = 1
 
 func IsIsogram(word string) bool {
-	word = removeSpecialChar(word)
-	mappa := map[string]bool{}
+	mappa := make(map[rune]bool)
 	for _, letter := range word {
-		lowercase := strings.ToLower(string(letter))
-		if _, ok := mappa[lowercase]; ok {
+		if !unicode.IsLetter(letter) {
+			continue
+		}
+		letter = unicode.ToLower(letter)
+		if mappa[letter] {
 			return false
 		}
-		mappa[lowercase] = true
+		mappa[letter] = true
 	}
 	return true
-}
-
-func removeSpecialChar(word string) string {
-	re := regexp.MustCompile("[\\- ]")
-	return re.ReplaceAllString(word, "")
 }
